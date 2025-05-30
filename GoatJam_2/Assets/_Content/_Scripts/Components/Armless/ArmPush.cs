@@ -7,6 +7,7 @@ using YInput;
 
 namespace Yaygun.Components.Armless
 {
+    public enum EPushState{none, preparetion, pushing, recovery}
     public class ArmPush : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _body;
@@ -25,9 +26,8 @@ namespace Yaygun.Components.Armless
         private float _recoverTime;
         [FoldoutGroup("Anim"), SerializeField] 
         private ParentFollower parentFollower;
-
-
-        private bool _startedArmPush;
+        
+        private EPushState _pushState;
 
         private bool _shouldPush;
 
@@ -35,21 +35,41 @@ namespace Yaygun.Components.Armless
         
         void Update()
         {
-            if (InputHandler.Instance.LeftClick.IsPressed)
+            switch (_pushState)
             {
-                if(_startedArmPush)
-                    return;
-                _startedArmPush = true;
-                _pushingTime = 0;
+                case EPushState.none:
+                    if (InputHandler.Instance.LeftClick.IsPressed)
+                        StartPreperation();
+                    break;
+                case EPushState.preparetion:
+                    PreperationState();
+                    break;
+                case EPushState.recovery:
+                    break;
             }
-            
-            if(InputHandler.Instance.LeftClick.IsHeld)
+        }
+
+        private void StartPreperation()
+        {
+            _pushState = EPushState.preparetion;
+            _pushingTime = 0;
+        }
+
+        private void PreperationState()
+        {
+            if (InputHandler.Instance.LeftClick.IsHeld)
+            {
                 _pushingTime += Time.deltaTime;
-            
-            if(InputHandler.Instance.LeftClick.IsReleased)
+                _fillImage.fillAmount = _pushingTime / _maxPushTime;
+                
+                if (_pushingTime >= _maxPushTime)
+                {
+                    _pushingTime = _maxPushTime;
+                    _shouldPush = true;
+                }
+            }
+            else
                 _shouldPush = true;
-            
-            _fillImage.fillAmount = _pushingTime / _maxPushTime;
         }
 
         private void FixedUpdate()
@@ -63,13 +83,22 @@ namespace Yaygun.Components.Armless
 
         private async void Push()
         {
+            _pushState = EPushState.pushing;
+            
             parentFollower.SetShouldFollow(false);
             
-            _body.AddForce(_arm1.right *( -1 * _pushForce * (_pushingTime / _maxPushTime)), _forceMode );
+            _body.AddForce(_arm1.right *( -1 * _pushForce * ( _pushingTime / _maxPushTime)), _forceMode );
             
             parentFollower.PlayPushAnim(_pushArmDistance);
             
             AsyncPush();
+        }
+
+        [Button]
+        private void PushTest()
+        {
+            _body.AddForce(_arm1.right *( -1 * _pushForce * ( 1)), _forceMode );
+
         }
 
         private async void AsyncPush()
@@ -78,8 +107,10 @@ namespace Yaygun.Components.Armless
             
             parentFollower.SetShouldFollow(true);
             
-            _startedArmPush = false;
+            _fillImage.fillAmount = 0;
+            
             _pushingTime = 0;
+            _pushState = EPushState.none;
         }
     }
 }
