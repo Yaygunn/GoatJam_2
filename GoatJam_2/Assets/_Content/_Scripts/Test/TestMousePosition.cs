@@ -11,12 +11,12 @@ namespace Yaygun
         [SerializeField] private Transform _arm1;
         [SerializeField] private Transform _arm2;
         
-        void Update()
+        void FixedUpdate()
         {
             Vector3 mousePos = GetMousePositionOnPlane();
             
             
-            _arm1.Look2D(mousePos);
+            _arm1.GetComponent<Rigidbody2D>().SetRotation(_arm1.Get2DLookAngle(mousePos));//Look2D(mousePos);
             _arm2.Look2D(mousePos);
         }
 

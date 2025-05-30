@@ -19,5 +19,19 @@ namespace Yaygun
                 transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
+
+        public static float Get2DLookAngle(this Transform transform, Vector3 target)
+        {
+            Vector2 direction = (Vector2)target - (Vector2)transform.position;
+
+            if (direction.sqrMagnitude > 0.0001f)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                return angle;
+            }
+
+            Debug.LogError("direction is to low to calculate look rotation");
+            return 0;
+        }
     }
 }
