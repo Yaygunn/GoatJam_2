@@ -14,7 +14,7 @@ namespace Yaygun.Components.Armless
             Vector3 mousePos = GetMousePositionOnPlane();
             
             
-            _arm1.GetComponent<Rigidbody2D>().SetRotation(_arm1.Get2DLookAngle(mousePos));
+            _arm1.Look2D(mousePos);//GetComponent<Rigidbody2D>().SetRotation(_arm1.Get2DLookAngle(mousePos));
             _arm2.Look2D(mousePos);
         }
 

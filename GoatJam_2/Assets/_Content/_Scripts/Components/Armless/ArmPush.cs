@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using YInput;
 
 namespace Yaygun.Components.Armless
@@ -13,6 +14,11 @@ namespace Yaygun.Components.Armless
         [SerializeField] private float _pushForce;
         [SerializeField] private ForceMode2D _forceMode;
 
+        [SerializeField] private Image _fillImage;
+        
+        [FoldoutGroup("Setting"), SerializeField] 
+        private float _maxPushTime;
+        
         [FoldoutGroup("Anim"), SerializeField] 
         private float _pushArmDistance;
         [FoldoutGroup("Anim"), SerializeField] 
@@ -21,12 +27,29 @@ namespace Yaygun.Components.Armless
         private ParentFollower parentFollower;
 
 
+        private bool _startedArmPush;
+
         private bool _shouldPush;
+
+        private float _pushingTime;
         
         void Update()
         {
-            if(InputHandler.Instance.LeftClick.IsPressed)
+            if (InputHandler.Instance.LeftClick.IsPressed)
+            {
+                if(_startedArmPush)
+                    return;
+                _startedArmPush = true;
+                _pushingTime = 0;
+            }
+            
+            if(InputHandler.Instance.LeftClick.IsHeld)
+                _pushingTime += Time.deltaTime;
+            
+            if(InputHandler.Instance.LeftClick.IsReleased)
                 _shouldPush = true;
+            
+            _fillImage.fillAmount = _pushingTime / _maxPushTime;
         }
 
         private void FixedUpdate()
@@ -42,7 +65,7 @@ namespace Yaygun.Components.Armless
         {
             parentFollower.SetShouldFollow(false);
             
-            _body.AddForce(_arm1.right * -1 * _pushForce, _forceMode );
+            _body.AddForce(_arm1.right *( -1 * _pushForce * (_pushingTime / _maxPushTime)), _forceMode );
             
             parentFollower.PlayPushAnim(_pushArmDistance);
             
@@ -54,6 +77,9 @@ namespace Yaygun.Components.Armless
             await UniTask.WaitForSeconds(_recoverTime);
             
             parentFollower.SetShouldFollow(true);
+            
+            _startedArmPush = false;
+            _pushingTime = 0;
         }
     }
 }
