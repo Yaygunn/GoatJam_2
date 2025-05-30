@@ -21,6 +21,8 @@ namespace YInput
         public InputState Interact { get; private set; }
 
         public InputState Jump { get; private set; }
+        
+        public InputState Graple { get; private set; }
 
         public InputState EscGameplay { get; private set; }
 
@@ -43,6 +45,7 @@ namespace YInput
             Interact = new InputState(_keys.gameplay.Interact); 
             
             Jump = new InputState(_keys.gameplay.Jump);
+            Graple = new InputState(_keys.gameplay.Graple);
             EscGameplay = new InputState(_keys.gameplay.Esc);
             EscUI = new InputState(_keys.ui.Esc);
 
@@ -70,6 +73,7 @@ namespace YInput
             LeftClick.ResetInputInfo();
             Interact.ResetInputInfo();
             Jump.ResetInputInfo();
+            Graple.ResetInputInfo();
             EscGameplay.ResetInputInfo();
             EscUI.ResetInputInfo();
         }

@@ -135,6 +135,15 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Graple"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3f5dae1-5e6f-4bc1-9f94-427c49a3ce67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @Keys: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48fc2e71-8ae1-44f8-8164-68bba5c41922"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Graple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -288,6 +308,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         m_gameplay_Interact = m_gameplay.FindAction("Interact", throwIfNotFound: true);
         m_gameplay_Esc = m_gameplay.FindAction("Esc", throwIfNotFound: true);
         m_gameplay_Jump = m_gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_gameplay_Graple = m_gameplay.FindAction("Graple", throwIfNotFound: true);
         // ui
         m_ui = asset.FindActionMap("ui", throwIfNotFound: true);
         m_ui_Esc = m_ui.FindAction("Esc", throwIfNotFound: true);
@@ -377,6 +398,7 @@ public partial class @Keys: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_Interact;
     private readonly InputAction m_gameplay_Esc;
     private readonly InputAction m_gameplay_Jump;
+    private readonly InputAction m_gameplay_Graple;
     /// <summary>
     /// Provides access to input actions defined in input action map "gameplay".
     /// </summary>
@@ -408,6 +430,10 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "gameplay/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_gameplay_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "gameplay/Graple".
+        /// </summary>
+        public InputAction @Graple => m_Wrapper.m_gameplay_Graple;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -449,6 +475,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Graple.started += instance.OnGraple;
+            @Graple.performed += instance.OnGraple;
+            @Graple.canceled += instance.OnGraple;
         }
 
         /// <summary>
@@ -475,6 +504,9 @@ public partial class @Keys: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Graple.started -= instance.OnGraple;
+            @Graple.performed -= instance.OnGraple;
+            @Graple.canceled -= instance.OnGraple;
         }
 
         /// <summary>
@@ -646,6 +678,13 @@ public partial class @Keys: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Graple" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGraple(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ui" which allows adding and removing callbacks.
