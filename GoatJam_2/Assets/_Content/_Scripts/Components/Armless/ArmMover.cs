@@ -1,12 +1,10 @@
 using UnityEngine;
 
-namespace Yaygun
+namespace Yaygun.Components.Armless
 {
-    public class TestMousePosition : MonoBehaviour
+    public class ArmMover : MonoBehaviour
     {
         [SerializeField] private Transform _playerBody;
-
-        [SerializeField] private Transform _playerPosShover;
 
         [SerializeField] private Transform _arm1;
         [SerializeField] private Transform _arm2;
@@ -16,7 +14,7 @@ namespace Yaygun
             Vector3 mousePos = GetMousePositionOnPlane();
             
             
-            _arm1.GetComponent<Rigidbody2D>().SetRotation(_arm1.Get2DLookAngle(mousePos));//Look2D(mousePos);
+            _arm1.GetComponent<Rigidbody2D>().SetRotation(_arm1.Get2DLookAngle(mousePos));
             _arm2.Look2D(mousePos);
         }
 

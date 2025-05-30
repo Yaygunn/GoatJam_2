@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 551801743}
   - component: {fileID: 551801745}
   m_Layer: 0
-  m_Name: TestMousePos
+  m_Name: ArmMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 1642868797}
-  _playerPosShover: {fileID: 725021762}
   _arm1: {fileID: 859809660}
   _arm2: {fileID: 909329416}
 --- !u!4 &551801744
@@ -607,11 +606,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 1642868799}
   _arm1: {fileID: 859809660}
-  _pushForce: 25
-  _forceMode: 0
+  _pushForce: 10
+  _forceMode: 1
   _pushArmDistance: 0.05
   _recoverTime: 0.2
-  _testModelFollow: {fileID: 2134992523}
+  parentFollower: {fileID: 2134992523}
 --- !u!1 &725021759
 GameObject:
   m_ObjectHideFlags: 0

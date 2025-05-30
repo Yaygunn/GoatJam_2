@@ -1,10 +1,12 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using YInput;
 
-namespace Yaygun
+namespace Yaygun.Components.Armless
 {
-    public class TestArmPush : MonoBehaviour
+    public class ArmPush : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _body;
         [SerializeField] private Transform _arm1;
@@ -16,28 +18,42 @@ namespace Yaygun
         [FoldoutGroup("Anim"), SerializeField] 
         private float _recoverTime;
         [FoldoutGroup("Anim"), SerializeField] 
-        private TestModelFollow _testModelFollow;
-        
+        private ParentFollower parentFollower;
 
-        // Update is called once per frame
+
+        private bool _shouldPush;
+        
         void Update()
         {
-            if(Input.GetMouseButton(0))
+            if(InputHandler.Instance.LeftClick.IsPressed)
+                _shouldPush = true;
+        }
+
+        private void FixedUpdate()
+        {
+            if (_shouldPush)
+            {
+                _shouldPush = false;
                 Push();
+            }
         }
 
         private async void Push()
         {
-            _testModelFollow.SetShouldFollow(false);
+            parentFollower.SetShouldFollow(false);
             
             _body.AddForce(_arm1.right * -1 * _pushForce, _forceMode );
             
-            _testModelFollow.PlayPushAnim(_pushArmDistance);
+            parentFollower.PlayPushAnim(_pushArmDistance);
             
+            AsyncPush();
+        }
+
+        private async void AsyncPush()
+        {
             await UniTask.WaitForSeconds(_recoverTime);
             
-            _testModelFollow.SetShouldFollow(true);
-
+            parentFollower.SetShouldFollow(true);
         }
     }
 }

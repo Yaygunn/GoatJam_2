@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Yaygun
+namespace Yaygun.Components.Armless
 {
-    public class TestModelFollow : MonoBehaviour
+    public class ParentFollower : MonoBehaviour
     {
         [SerializeField] private float _smoothPosTime = 0.2f;
         [SerializeField] private float _smoothRotTime = 0.2f;
@@ -40,33 +40,31 @@ namespace Yaygun
         {
             if(!_shouldFollow)
                 return;
+            
+            PosOperation();
+            RotOperation();
+        }
+
+        private void PosOperation()
+        {
             transform.position = Vector3.SmoothDamp(
                 transform.position,
                 _parent.position,
                 ref _positionVelocity,
                 _smoothPosTime
             );
-            
-            /*float smootedValue = Mathf.SmoothDamp(transform.eulerAngles.z, _parent.eulerAngles.z, ref _rotationVelocity, _smoothRotTime);
-            transform.rotation = Quaternion.EulerAngles(0,0, smootedValue);*/
-            RotOperation();
         }
         
         private void RotOperation()
         {
-            // Current z rotation
             float currentZ = transform.eulerAngles.z;
 
-            // Target z rotation
             float targetZ = _parent.eulerAngles.z;
 
-            // Calculate shortest difference between angles (handles wrap-around)
             float deltaAngle = Mathf.DeltaAngle(currentZ, targetZ);
 
-            // Smooth damp the delta angle from 0 to deltaAngle
             float smoothedDelta = Mathf.SmoothDampAngle(0, deltaAngle, ref _rotationVelocity, _smoothRotTime);
 
-            // Apply the smoothed rotation
             float newZ = currentZ + smoothedDelta;
             transform.rotation = Quaternion.Euler(0, 0, newZ);
         }
