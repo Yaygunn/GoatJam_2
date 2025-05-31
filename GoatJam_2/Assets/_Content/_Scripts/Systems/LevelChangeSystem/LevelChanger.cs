@@ -41,12 +41,13 @@ namespace Yaygun.Systems.LevelChange
             _isChangingScene = true;
             
             ActivateLoadingScreen();
+            await SpriteAnim.PlayAnim(_loadingBar,1);
             await UniTask.WaitForSeconds(_enterTime);
             
             await SceneLoadOperation(sceneName);
 
             await UniTask.WaitForSeconds(_hideDelay);
-            HideLoadingScreen();
+            SpriteAnim.PlayAnim(_loadingBar, -1).Forget();
             
             _isChangingScene = false;
         }
@@ -81,9 +82,9 @@ namespace Yaygun.Systems.LevelChange
             if (_loadingScreen == null)
                 return;
 
-            _loadingScreen.DOKill();
+            /*_loadingScreen.DOKill();
             _loadingScreen.localPosition = new Vector3(_startX, 0f, 0f);
-            _loadingScreen.DOLocalMove(Vector3.zero, _enterTime).SetEase(Ease.OutQuint);
+            _loadingScreen.DOLocalMove(Vector3.zero, _enterTime).SetEase(Ease.OutQuint);*/
         }
 
         private void HideLoadingScreen()

@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe6bf6f410223249be961af4db5ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 5
+  _maxSpeed: 3
   _acceleration: 20
 --- !u!114 &3476028254805327356
 MonoBehaviour:
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e85cb374eeab14290c7e8e0ce06586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpSpeed: 7
+  _jumpSpeed: 4
   _ascentCheck:
     <NecSpeed>k__BackingField: 0.8
     <GravityScale>k__BackingField: 1
