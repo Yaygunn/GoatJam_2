@@ -3,11 +3,12 @@ using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 using Yaygun.Components.Armless;
+using Yaygun.Interfaces;
 
 namespace Yaygun.Controllers.Legless
 {
     public enum ELeglessState{normal, slimed}
-    public class LeglessController : MonoBehaviour
+    public class LeglessController : MonoBehaviour, IPushable
     {
         [field:FoldoutGroup("Components"), SerializeField]
         public ArmPush CArmPush { get; private set; }
