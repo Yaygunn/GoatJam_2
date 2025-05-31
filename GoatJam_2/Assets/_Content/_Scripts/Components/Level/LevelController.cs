@@ -12,17 +12,13 @@ namespace Yaygun
 
         public event Action Ev_EnteredLevelArea;
         
-        [field:FoldoutGroup("spawn point Referances"), SerializeField]
-        public Transform[] SpawnPointIndexes { get; private set; }
+        [field:SerializeField] public SpawnPoint SpawnPoint { get; private set; }
 
-        [FoldoutGroup("Level Version Referances"), SerializeField]
-        private SLevelObjects[] _levelVersionObjects;
 
-        public int LevelVersion;
+        public int LevelVersion { get; set; }
         public void Initialize(int levelVersion)
         {
             LevelVersion = levelVersion;
-            DestroyOtherVersionObjects();
             Door = TryGetLevelDoor();
         }
 
@@ -43,19 +39,6 @@ namespace Yaygun
         {
             return GetComponentInChildren<Door>();
         }
-
-        private void DestroyOtherVersionObjects()
-        {
-            for (int i = 0; i < _levelVersionObjects.Length; i++)
-                if(i != LevelVersion)
-                    foreach (var VARIABLE in _levelVersionObjects[i].Objects)
-                        Destroy(VARIABLE);
-        }
-    }
-
-    [System.Serializable]
-    public struct SLevelObjects
-    {
-        public GameObject[] Objects;
+        
     }
 }

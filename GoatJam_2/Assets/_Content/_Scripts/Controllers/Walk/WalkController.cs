@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Yaygun.Components.Walk;
+using Yaygun.Managers;
 using YInput;
 
 namespace Yaygun.Controllers.Walk
@@ -14,6 +15,7 @@ namespace Yaygun.Controllers.Walk
         {
             CMovement = GetComponent<Movement>();
             CVerticalMovement = GetComponent<VerticalMovement>();
+            CameraManager.Instance.FollowMe(transform);
         }
 
         private void Update()

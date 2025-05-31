@@ -49,6 +49,7 @@ namespace Yaygun.Managers
                     levelManage = VARIABLE;
             _levelHolder.CurrentLevel = levelManage.LevelIndex;
             SaveSystem.LevelSave.UnlockLevel(levelManage.LevelIndex);
+            RemovePreviousLevel();
         }
         
         private void LoadNewLevel(SLevelPrefab levelPrefab, int levelIndex)
@@ -60,6 +61,8 @@ namespace Yaygun.Managers
 
         public async void RemovePreviousLevel()
         {
+            if (_loadedLevels.Count < 2)
+                return;
             LevelController level = _loadedLevels[0].LevelController;
             _loadedLevels.RemoveAt(0);
             
@@ -99,8 +102,9 @@ namespace Yaygun.Managers
             SLevelManage levelManage = _loadedLevels[0];
             levelManage.LevelController.Initialize(levelManage.LevelPrefab.LevelVersionIndex);
             
-            Vector3 spawnPos = levelManage.LevelController.SpawnPointIndexes[levelManage.LevelPrefab.LevelVersionIndex].position;
+            Vector3 spawnPos = levelManage.LevelController.SpawnPoint.transform.position;
 
+            spawnPos.z = 0;
             if(levelManage.LevelPrefab.HasLegs)
                 Instantiate(_walkingCharacter, spawnPos, Quaternion.identity);
             else
