@@ -32,8 +32,15 @@ namespace Yaygun.Components
         private void Start()
         {
             _startPos = transform.position;
+            _destination += _startPos;
             _lastDestination = _startPos;
+            _followerRb.transform.SetParent(transform.parent);
             MoveToNextDestination();
+        }
+
+        private void FixedUpdate()
+        {
+            _followerRb?.MovePosition(transform.position);
         }
 
         private async void Wait()
