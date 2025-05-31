@@ -11,7 +11,7 @@ namespace Yaygun
         [field:SerializeField]
         public Transform AttachPoint;
         
-        private float _resetTime = 1;
+        private float _resetTime = 0.3f;
 
         private bool _canConnect = true;
         

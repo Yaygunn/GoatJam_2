@@ -16,7 +16,7 @@ namespace Yaygun.Components.Armless
         [SerializeField] private float _pushForce;
         [SerializeField] private ForceMode2D _forceMode;
 
-        [SerializeField] private Image _fillImage;
+        [SerializeField] private PushUI _ui;
         
         [FoldoutGroup("Referances"), SerializeField]
         private LeglessController _controller;
@@ -57,6 +57,7 @@ namespace Yaygun.Components.Armless
         {
             _pushState = EPushState.preparetion;
             _pushingTime = 0;
+            _ui.StartPush();
         }
 
         private void PreperationState()
@@ -64,7 +65,7 @@ namespace Yaygun.Components.Armless
             if (InputHandler.Instance.LeftClick.IsHeld)
             {
                 _pushingTime += Time.deltaTime;
-                _fillImage.fillAmount = _pushingTime / _maxPushTime;
+                _ui.FillRate(_pushingTime / _maxPushTime);
                 
                 if (_pushingTime >= _maxPushTime)
                 {
@@ -87,6 +88,7 @@ namespace Yaygun.Components.Armless
 
         private async void Push()
         {
+            _ui.Stop();
             _controller.TryDisconnectFromSlime();
             _pushState = EPushState.pushing;
             
@@ -111,8 +113,6 @@ namespace Yaygun.Components.Armless
             await UniTask.WaitForSeconds(_recoverTime);
             
             parentFollower.SetShouldFollow(true);
-            
-            _fillImage.fillAmount = 0;
             
             _pushingTime = 0;
             _pushState = EPushState.none;

@@ -778,6 +778,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1692286138}
   m_SourcePrefab: {fileID: 100100000, guid: 6bd5fedec40b7a045bcae282f16698ed, type: 3}
+--- !u!20 &429673985 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2009774315147808487, guid: 6bd5fedec40b7a045bcae282f16698ed, type: 3}
+  m_PrefabInstance: {fileID: 429673984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &718612781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5590404401086039042, guid: 6bd5fedec40b7a045bcae282f16698ed, type: 3}
@@ -1590,10 +1595,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3363058930567470398, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
+      propertyPath: _fadeInTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363058930567470398, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
+      propertyPath: _fadeOutTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4683996387513134820, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
       propertyPath: m_Name
       value: LeglessPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 7362498795433029920, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 429673985}
+    - target: {fileID: 7858324580599859987, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f6c0604003eb70a49abdef9ac48c8280, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

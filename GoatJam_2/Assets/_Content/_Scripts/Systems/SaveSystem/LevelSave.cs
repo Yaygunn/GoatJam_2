@@ -49,7 +49,8 @@ namespace Yaygun.Systems
                 _levelsData[i].IsUnlocked = PlayerPrefs.GetInt(_levelIndexString + i + _unlockedString) == 1;
             }
             
-            _levelsData[0].IsUnlocked = true;
+            if(_levelsData.Length >0)
+                _levelsData[0].IsUnlocked = true;
         }
     }
     
