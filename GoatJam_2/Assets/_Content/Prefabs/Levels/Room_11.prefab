@@ -3803,9 +3803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bdb9255efe5924a93be5e981df8667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SpawnPointIndexes>k__BackingField: []
-  _levelVersionObjects: []
-  LevelVersion: 0
+  <SpawnPoint>k__BackingField: {fileID: 0}
 --- !u!1 &8340793407949771413
 GameObject:
   m_ObjectHideFlags: 0
