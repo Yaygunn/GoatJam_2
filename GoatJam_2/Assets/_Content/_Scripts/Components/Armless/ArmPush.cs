@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
+using Yaygun.Controllers.Legless;
 using YInput;
 
 namespace Yaygun.Components.Armless
@@ -16,6 +17,9 @@ namespace Yaygun.Components.Armless
         [SerializeField] private ForceMode2D _forceMode;
 
         [SerializeField] private Image _fillImage;
+        
+        [FoldoutGroup("Referances"), SerializeField]
+        private LeglessController _controller;
         
         [FoldoutGroup("Setting"), SerializeField] 
         private float _maxPushTime;
@@ -83,6 +87,7 @@ namespace Yaygun.Components.Armless
 
         private async void Push()
         {
+            _controller.TryDisconnectFromSlime();
             _pushState = EPushState.pushing;
             
             parentFollower.SetShouldFollow(false);

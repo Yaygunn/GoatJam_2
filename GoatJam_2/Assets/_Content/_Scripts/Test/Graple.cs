@@ -1,13 +1,14 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Yaygun.Controllers.Legless;
 using Yaygun.Interfaces;
 using YInput;
 
 namespace Yaygun
 {
     public enum EGrapleState{unable, none, prep,slide}
-    public class TestGraple : MonoBehaviour
+    public class Graple : MonoBehaviour
     {
         private EGrapleState _grapleState = EGrapleState.none;
 
@@ -15,6 +16,8 @@ namespace Yaygun
         private Rigidbody2D _rb;
         [FoldoutGroup("Referances"), SerializeField]
         private DistanceJoint2D _joint;
+        [FoldoutGroup("Referances"), SerializeField]
+        private LeglessController _controller;
         
         [FoldoutGroup("Settings"), SerializeField]
         private Transform _rayStartPos;
@@ -108,6 +111,7 @@ namespace Yaygun
             {
                 _grapable = grapable;
                 _grapPos = grapPosition;
+                _controller.TryDisconnectFromSlime();
                 StartPrep();
             }
         }
