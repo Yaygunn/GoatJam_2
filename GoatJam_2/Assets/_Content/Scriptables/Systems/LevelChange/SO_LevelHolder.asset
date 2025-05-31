@@ -18,5 +18,7 @@ MonoBehaviour:
     <LevelName>k__BackingField: StartMenu
   _endLevel:
     <LevelName>k__BackingField: 
-  _levels:
-  - <LevelName>k__BackingField: GameScene_1
+  _gameLevel:
+    <LevelName>k__BackingField: GameScene
+  _levels: []
+  CurrentLevel: 0

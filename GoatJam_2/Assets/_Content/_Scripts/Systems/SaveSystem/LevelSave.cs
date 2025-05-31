@@ -27,17 +27,16 @@ namespace Yaygun.Systems
             return _levelsData[levelIndex].IsUnlocked;
         }
 
-        public void UnlockNextLevel()
+        public void UnlockLevel(int levelIndex)
         {
-            int nextLevelIndex = LevelChangeSystem.Instance.Levels.GetCurrentGameSceneIndex() + 1;
-            if (nextLevelIndex >= _levelsData.Length)
+            if (levelIndex >= _levelsData.Length)
             {
-                Debug.LogError($"trying to save level {nextLevelIndex} that is not in range");
+                Debug.LogError($"trying to save level {levelIndex} that is not in range");
                 return;
             }
 
-            PlayerPrefs.SetInt(_levelIndexString + nextLevelIndex + _unlockedString, 1);
-            _levelsData[nextLevelIndex].IsUnlocked = true;
+            PlayerPrefs.SetInt(_levelIndexString + levelIndex + _unlockedString, 1);
+            _levelsData[levelIndex].IsUnlocked = true;
         }
 
         private void LoadLevelsData()

@@ -18,9 +18,9 @@ namespace Yaygun.Systems.LevelChange
             LoadScene(currentScene);
         }
 
-        public void LoadFirstGameScene()
+        public void LoadGameScene()
         {
-            LoadScene(Levels.GetGameSceneWithIndex(0).LevelName);
+            LoadScene(Levels.GetGameScene().LevelName);
         }
 
         public void LoadMenuScene()
@@ -28,14 +28,10 @@ namespace Yaygun.Systems.LevelChange
             LoadScene(Levels.GetMenuScene().LevelName);
         }
 
-        public void LoadNextScene()
+        public void LoadGameSceneWithIndex(int levelIndex)
         {
-            LoadScene(Levels.GetNextScene().LevelName);
-        }
-
-        public void LeadGameSceneWithIndex(int levelIndex)
-        {
-            LoadScene(Levels.GetGameSceneWithIndex(levelIndex).LevelName);
+            Levels.CurrentLevel = levelIndex;
+            LoadGameScene();
         }
 
         private void LoadScene(string sceneName)

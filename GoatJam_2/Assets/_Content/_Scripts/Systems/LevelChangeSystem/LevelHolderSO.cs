@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Yaygun.Systems.LevelChange
 {
@@ -13,55 +14,45 @@ namespace Yaygun.Systems.LevelChange
         private SLevelData _startMenu;
         [FoldoutGroup("NonGame"), SerializeField]
         private SLevelData _endLevel;
+        [FoldoutGroup("NonGame"), SerializeField]
+        private SLevelData _gameLevel;
 
         [FoldoutGroup("Game"), SerializeField]
-        private SLevelData[] _levels;
+        private SLevelPrefab[] _levels;
 
         public int NumberOfLevels => _levels.Length;
 
-        public SLevelData GetNextScene() => GetNextScene(SceneManager.GetActiveScene().name);
-        
-        public int GetCurrentGameSceneIndex()
-        {
-            string sceneName = SceneManager.GetActiveScene().name;
-            for (int i=0; i<_levels.Length; i++)
-                if(sceneName == _levels[i].LevelName)
-                    return i;
-            Debug.LogError("Current scene is not a game scene");
-            return -1;
-        }
-        
-        public SLevelData GetGameSceneWithIndex(int index)
+        public int CurrentLevel;
+
+        public SLevelPrefab GetGameSceneWithIndex(int index)
         {
             if (_levels.Length > index)
                 return _levels[index];
             Debug.LogError("wanted scene is not in levels hierarchy");
-            return _endLevel;
+            return _levels[0];
         }
         
-        private SLevelData GetNextScene(string currentScene)
-        {
-            for (int i = 0; i < _levels.Length - 1; i++)
-                if (_levels[i].LevelName == currentScene)
-                    return _levels[i + 1];
-
-            if (_levels[NumberOfLevels - 1].LevelName == currentScene)
-                return _endLevel;
-
-            Debug.LogError("Current scene is not in levels hierarchy");
-            return _endLevel;
-        }
-
         public SLevelData GetEndScene() => _endLevel;
 
         public SLevelData GetMenuScene() => _startMenu;
 
         public SLevelData GetSplashScene() => _splash;
+        public SLevelData GetGameScene() => _gameLevel;
     }
     
     [System.Serializable]
     public struct SLevelData
     {
         [field:SerializeField] public string LevelName { get; private set; }
+    }
+    
+    [System.Serializable]
+    public struct SLevelPrefab
+    {
+        [field:SerializeField] public GameObject LevelPrefab { get;  private set; }
+
+        [field: SerializeField] public int LevelVersionIndex { get; private set; }
+
+        [field: SerializeField] public bool HasLegs { get; private set; }
     }
 }

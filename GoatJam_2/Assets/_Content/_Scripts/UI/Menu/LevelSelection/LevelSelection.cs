@@ -37,7 +37,6 @@ namespace Yaygun.UI.Menu
         private SLevelInfo GetLevelInfo(int levelIndex)
         {
             SLevelInfo levelInfo = new();
-            levelInfo.LevelData = LevelChangeSystem.Instance.Levels.GetGameSceneWithIndex(levelIndex);
             levelInfo.LevelIndex = levelIndex;
             levelInfo.Islocked = !SaveSystem.LevelSave.IsLevelUnlocked(levelIndex);
             return levelInfo;
@@ -45,13 +44,12 @@ namespace Yaygun.UI.Menu
 
         private void OnLevelSelected(int levelIndex)
         {
-             LevelChangeSystem.Instance.LeadGameSceneWithIndex(levelIndex);
+             LevelChangeSystem.Instance.LoadGameSceneWithIndex(levelIndex);
         }
     }
 
     public struct SLevelInfo
     {
-        public SLevelData LevelData;
         public int LevelIndex;
         public bool Islocked;
     }
