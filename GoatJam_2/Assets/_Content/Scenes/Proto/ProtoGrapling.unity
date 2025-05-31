@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4866347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1689543831446911073, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
-  m_PrefabInstance: {fileID: 1939499672}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4866348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 638318075454347829, guid: 5a812db82c2b98346a6a66dedd14ee0f, type: 3}
@@ -939,8 +934,10 @@ MonoBehaviour:
     m_Bits: 55
   _connectionAnchorOffset: {x: 0, y: 0.5}
   _slideDistance: 3
-  _smoothTime: 1
-  _object: {fileID: 4866347}
+  _smoothTime: 0.2
+  _mapGrapableDistance: 50
+  _necExtraDistanceForEnterSlide: 0.2
+  _horizontalForce: 100
 --- !u!4 &1576610390
 Transform:
   m_ObjectHideFlags: 0
