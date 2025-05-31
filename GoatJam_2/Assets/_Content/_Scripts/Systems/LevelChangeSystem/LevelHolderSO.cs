@@ -51,7 +51,7 @@ namespace Yaygun.Systems.LevelChange
     {
         [field:SerializeField] public GameObject LevelPrefab { get;  private set; }
 
-        [field: SerializeField] public int LevelVersionIndex { get; private set; }
+        public int LevelVersionIndex { get; private set; }
 
         [field: SerializeField] public bool HasLegs { get; private set; }
     }
