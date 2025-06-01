@@ -34,6 +34,12 @@ namespace Yaygun
             Ev_EnteredLevelArea?.Invoke();
         }
 
+        public void CloseNextRoomDoor()
+        {
+            Door?.CloseDoor();
+            LevelManager.Instance.DeleteNextLevel(this);
+        }
+
 
         private Door TryGetLevelDoor()
         {

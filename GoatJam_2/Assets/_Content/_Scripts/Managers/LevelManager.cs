@@ -41,6 +41,16 @@ namespace Yaygun.Managers
             LoadNewLevel(_levelHolder.GetGameSceneWithIndex(nextLevelIndex), nextLevelIndex);
         }
 
+        public void DeleteNextLevel(LevelController level)
+        {
+            for (int i = 0; i < _levelHolder.NumberOfLevels; i++)
+                if (_loadedLevels[i].LevelController == level)
+                {
+                    if(_loadedLevels.Count > i +1)
+                        DestroyLane(i+1);
+                }
+        }
+
         public void AchieveSaveLevel(LevelController level)
         {
             SLevelManage levelManage = _loadedLevels[0];
@@ -75,6 +85,12 @@ namespace Yaygun.Managers
             }
             
             Destroy(level.gameObject);
+        }
+
+        public void DestroyLane(int laneIndexInLoaded)
+        {
+            Destroy(_loadedLevels[laneIndexInLoaded].LevelController.gameObject);
+            _loadedLevels.RemoveAt(laneIndexInLoaded);
         }
 
         private void OpenFromZeroLevel(int  levelIndex)

@@ -77,8 +77,7 @@ namespace Yaygun.Systems.LevelChange
         {
             if (_canvas != null)
                 _canvas.SetActive(true);
-            if (_loadingBar != null)
-                _loadingBar.fillAmount = 0f;
+           
             if (_loadingScreen == null)
                 return;
 
