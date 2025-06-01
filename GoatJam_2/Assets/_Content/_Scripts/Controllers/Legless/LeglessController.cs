@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,9 +32,10 @@ namespace Yaygun.Controllers.Legless
             _leglessState = ELeglessState.slimed;
             Slime = slime;
             
-            transform.position = Slime.AttachPoint.position;
             RB.linearVelocity = Vector2.zero;
             RB.isKinematic = true;
+
+            transform.DOMove(slime.AttachPoint.position, 0.2f).SetEase(Ease.InOutSine);
             transform.SetParent(Slime.AttachPoint.transform);
             return true;
         }
