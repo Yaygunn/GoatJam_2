@@ -1,4 +1,5 @@
 using System;
+using By2m.Systems;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Yaygun.Controllers.Legless;
@@ -125,6 +126,7 @@ namespace Yaygun
         private void TryStartPrep()
         {
             Vector2 mousePos = GetMousePositionOnPlane();
+            AudioPlay.GraplingGun();
             if (TryGetGrapable(mousePos, out IGrapable grapable, out Vector2 grapPosition))
             {
                 _grapable = grapable;

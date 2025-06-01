@@ -1,4 +1,5 @@
 using System;
+using By2m.Systems;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -27,6 +28,8 @@ namespace Yaygun
             _isOpen = true;
             _animator.SetBool(_doorHashOpen, true);
             
+            AudioPlay.DoorOpen();
+            
             await UniTask.WaitForSeconds(AnimTime);
             
             ResetDoorCollider();
@@ -40,6 +43,7 @@ namespace Yaygun
             _isOpen = false;
             _animator.SetBool(_doorHashOpen, false);
 
+            AudioPlay.DoorClose();
             ResetDoorCollider();
         }
 

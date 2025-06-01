@@ -1,4 +1,5 @@
 using System;
+using By2m.Systems;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -45,6 +46,8 @@ namespace Yaygun
         {
             _tween?.Kill();
 
+            print("open");
+
             _tween = _pad.DOMove(_startPos - _moveDistance, _moveTime)
                 .SetEase(Ease.InOutCirc)
                 .OnComplete(LoadNextLevel);
@@ -54,6 +57,9 @@ namespace Yaygun
         {
             _tween?.Kill();
 
+            print("close");
+
+            
             _tween = _pad.DOMove(_startPos , _moveTime)
                 .SetEase(Ease.InOutCirc)
                 .OnComplete(DeleteNextLevel);
@@ -66,8 +72,8 @@ namespace Yaygun
                 return;
             _loadedNextLevel = true;
             
+            AudioPlay.ButtonOn();
             _levelController?.OpenNextRoomDoor();
-            print("open");
         }
 
         private void DeleteNextLevel()
@@ -75,10 +81,10 @@ namespace Yaygun
             if(!_loadedNextLevel)
                 return;
             _loadedNextLevel = false;
-            
+            AudioPlay.ButtonOf();
+
             _levelController?.CloseNextRoomDoor();
             
-            print("close");
         }
 
         

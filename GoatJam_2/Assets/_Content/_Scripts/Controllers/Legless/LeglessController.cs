@@ -1,4 +1,5 @@
 using System;
+using By2m.Systems;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
@@ -39,6 +40,8 @@ namespace Yaygun.Controllers.Legless
 
             transform.DOMove(slime.AttachPoint.position, 0.2f).SetEase(Ease.InOutSine);
             transform.SetParent(Slime.AttachPoint.transform);
+            
+            AudioPlay.Slime();
             return true;
         }
 

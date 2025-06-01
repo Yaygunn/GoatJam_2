@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df4c255d7154044f8dc2290dfac3d8b, type: 3}
+  m_Name: AudioDataSO
+  m_EditorClassIdentifier: 
+  <GameMusic>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <ButtonOn>k__BackingField:
+    Guid:
+      Data1: 1156371597
+      Data2: 1232958752
+      Data3: -778236253
+      Data4: 1422783241
+    Path: event:/LevelElement/ButtonOn
+  <ButtonOf>k__BackingField:
+    Guid:
+      Data1: -1380560136
+      Data2: 1192176308
+      Data3: 963849136
+      Data4: 669952588
+    Path: event:/LevelElement/ButtonOff
+  <DoorOpen>k__BackingField:
+    Guid:
+      Data1: -987216670
+      Data2: 1325362534
+      Data3: 2028099005
+      Data4: -888634619
+    Path: event:/LevelElement/DoorOpen
+  <DoorClose>k__BackingField:
+    Guid:
+      Data1: 1352610383
+      Data2: 1154331635
+      Data3: 1427577738
+      Data4: 1721317616
+    Path: event:/LevelElement/DoorClose
+  <Slime>k__BackingField:
+    Guid:
+      Data1: -1495582753
+      Data2: 1122710064
+      Data3: 143348107
+      Data4: -635173452
+    Path: event:/LevelElement/Slime sesi
+  <GraplingGun>k__BackingField:
+    Guid:
+      Data1: -154455088
+      Data2: 1257421218
+      Data3: 989362083
+      Data4: 1638264961
+    Path: event:/Play/Grapling gun
+  <LegLoss>k__BackingField:
+    Guid:
+      Data1: -1326285256
+      Data2: 1336874878
+      Data3: -387469676
+      Data4: 1282556539
+    Path: event:/Play/LegLoss
+  <Death>k__BackingField:
+    Guid:
+      Data1: 481451553
+      Data2: 1115343780
+      Data3: -1055778655
+      Data4: -145883430
+    Path: event:/Play/Death
