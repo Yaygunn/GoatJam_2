@@ -24,6 +24,8 @@ namespace Yaygun
 
         public void OpenNextRoomDoor()
         {
+            if(!Door)
+                print("door is null");
             Door?.OpenDoor();
             LevelManager.Instance.LoadNextLevel();
         }
@@ -40,6 +42,7 @@ namespace Yaygun
             LevelManager.Instance.DeleteNextLevel(this);
         }
 
+        
 
         private Door TryGetLevelDoor()
         {

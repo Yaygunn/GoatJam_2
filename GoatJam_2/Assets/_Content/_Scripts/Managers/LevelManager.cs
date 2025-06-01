@@ -75,8 +75,8 @@ namespace Yaygun.Managers
                 return;
             LevelController level = _loadedLevels[0].LevelController;
             _loadedLevels.RemoveAt(0);
-            
-            Door door = level.GetComponent<Door>();
+
+            Door door = level.Door;
             if (door)
             {
                 door.CloseDoor();
@@ -86,6 +86,16 @@ namespace Yaygun.Managers
             
             Destroy(level.gameObject);
         }
+        
+        public void DeleteAllLoadedAndLoadNextLevel()
+        {
+            int levelIndex = _loadedLevels[_loadedLevels.Count - 1].LevelIndex;
+            foreach (var VARIABLE in _loadedLevels)
+                Destroy(VARIABLE.LevelController.gameObject);
+            
+            _loadedLevels.Clear();
+            OpenFromZeroLevel(levelIndex +1, false);
+        }
 
         public void DestroyLane(int laneIndexInLoaded)
         {
@@ -93,10 +103,11 @@ namespace Yaygun.Managers
             _loadedLevels.RemoveAt(laneIndexInLoaded);
         }
 
-        private void OpenFromZeroLevel(int  levelIndex)
+        private void OpenFromZeroLevel(int  levelIndex, bool withProviousDoor = true)
         {
             if(levelIndex >0)
-                LoadNewLevel(_levelHolder.GetGameSceneWithIndex(levelIndex -1), levelIndex -1);
+                if(withProviousDoor)
+                    LoadNewLevel(_levelHolder.GetGameSceneWithIndex(levelIndex -1), levelIndex -1);
             LoadNewLevel(_levelHolder.GetGameSceneWithIndex(levelIndex ), levelIndex );
 
             if (_loadedLevels.Count > 1)

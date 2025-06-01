@@ -21,10 +21,12 @@ MonoBehaviour:
   _gameLevel:
     <LevelName>k__BackingField: GameScene
   _levels:
-  - <LevelPrefab>k__BackingField: {fileID: 3693203885303751755, guid: f6fd0358ad134c94389e46e326b20add, type: 3}
-    <HasLegs>k__BackingField: 1
   - <LevelPrefab>k__BackingField: {fileID: 7646666406488772777, guid: 87e92dd215d6fde45b3ec5df7cd2145a, type: 3}
     <HasLegs>k__BackingField: 1
-  - <LevelPrefab>k__BackingField: {fileID: 8953077245393489223, guid: 862ed2e3e6aac5c4cad7541dbcd7f2ee, type: 3}
+  - <LevelPrefab>k__BackingField: {fileID: 3693203885303751755, guid: f6fd0358ad134c94389e46e326b20add, type: 3}
     <HasLegs>k__BackingField: 1
-  CurrentLevel: 0
+  - <LevelPrefab>k__BackingField: {fileID: 3693203885303751755, guid: 3ff93b51dd4575c4a948135577a5e2b0, type: 3}
+    <HasLegs>k__BackingField: 0
+  - <LevelPrefab>k__BackingField: {fileID: 7646666406488772777, guid: ceb4115a42b449a428059472aaaaa344, type: 3}
+    <HasLegs>k__BackingField: 0
+  CurrentLevel: 3

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Yaygun.Components.Armless;
 using Yaygun.Interfaces;
+using Yaygun.Managers;
 
 namespace Yaygun.Controllers.Legless
 {
@@ -25,6 +26,7 @@ namespace Yaygun.Controllers.Legless
         private void OnEnable()
         {
             RB = GetComponent<Rigidbody2D>();
+            CameraManager.Instance.FollowMe(transform);
         }
 
         public bool TryAttachSlime(Slime slime)
