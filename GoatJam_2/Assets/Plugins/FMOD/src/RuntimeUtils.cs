@@ -612,7 +612,7 @@ namespace FMODUnity
         }
 
 #if UNITY_EDITOR
-        public static string WritableAssetPath(string subPath)
+       /* public static string WritableAssetPath(string subPath)
         {
             if (RuntimeUtils.PluginBasePath.StartsWith("Assets/"))
             {
@@ -622,7 +622,7 @@ namespace FMODUnity
             {
                 return $"Assets/Plugins/FMOD/{subPath}.asset";
             }
-        }
+        }*/
 #endif
     }
 }

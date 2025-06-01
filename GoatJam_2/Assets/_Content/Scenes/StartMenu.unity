@@ -357,6 +357,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2101206452529510633, guid: 7d3e94f83a2a7484e8f6db4df0100c1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101206452529510633, guid: 7d3e94f83a2a7484e8f6db4df0100c1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6044071074719211378, guid: 7d3e94f83a2a7484e8f6db4df0100c1f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
