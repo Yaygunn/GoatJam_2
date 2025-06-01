@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 7858324580599859987}
   _arm1: {fileID: 638318075454347829}
-  _pushForce: 15
+  _pushForce: 10
   _forceMode: 1
   _ui: {fileID: 3363058930567470398}
   _controller: {fileID: 6345266161947858703}

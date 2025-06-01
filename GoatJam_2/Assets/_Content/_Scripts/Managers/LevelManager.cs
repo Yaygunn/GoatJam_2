@@ -108,6 +108,8 @@ namespace Yaygun.Managers
             if(levelIndex >0)
                 if(withProviousDoor)
                     LoadNewLevel(_levelHolder.GetGameSceneWithIndex(levelIndex -1), levelIndex -1);
+                else
+                    print("spawn level without door");
             LoadNewLevel(_levelHolder.GetGameSceneWithIndex(levelIndex ), levelIndex );
 
             if (_loadedLevels.Count > 1)
@@ -118,6 +120,8 @@ namespace Yaygun.Managers
                 Door door = _loadedLevels[0].LevelController.Door;
                 if(door)
                     door.transform.SetParent(_loadedLevels[1].LevelController.transform);
+                else 
+                    print("previous level has no door.");
             
                 Destroy(_loadedLevels[0].LevelController.gameObject);
                 _loadedLevels.RemoveAt(0);
