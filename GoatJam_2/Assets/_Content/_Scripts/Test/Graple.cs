@@ -7,7 +7,7 @@ using YInput;
 
 namespace Yaygun
 {
-    public enum EGrapleState{unable, none, prep,slide}
+    public enum EGrapleState{unable, none, ropeGo, prep,slide}
     public class Graple : MonoBehaviour
     {
         private EGrapleState _grapleState = EGrapleState.none;
@@ -18,6 +18,8 @@ namespace Yaygun
         private DistanceJoint2D _joint;
         [FoldoutGroup("Referances"), SerializeField]
         private LeglessController _controller;
+        [FoldoutGroup("Referances"), SerializeField]
+        private GraplingRope _rope;
         
         [FoldoutGroup("Settings"), SerializeField]
         private Transform _rayStartPos;
@@ -39,7 +41,10 @@ namespace Yaygun
 
 
         private float _smoothVelocity;
-        
+
+        private float _ropeTimer;
+        private float _ropeReachTime = 0.2f;
+
 
         private IGrapable _grapable;
         private Vector2 _grapPos;
@@ -52,6 +57,11 @@ namespace Yaygun
                     if (InputHandler.Instance.Graple.IsPressed)
                         TryStartPrep();
                     break;
+                case EGrapleState.ropeGo:
+                    _ropeTimer += Time.deltaTime;
+                    if(_ropeTimer >= _ropeReachTime)
+                        StartPrep();
+                    break;
                 case EGrapleState.prep:
                     Prep();
                     CheckForExit();
@@ -63,6 +73,13 @@ namespace Yaygun
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        private void SendRope()
+        {
+            _grapleState = EGrapleState.ropeGo;
+            _ropeTimer = 0;
+            _ropeReachTime = _rope.GoToDestination(_grapPos);
+        }
         private void CheckForExit()
         {
             if(!InputHandler.Instance.Graple.IsHeld)
@@ -72,6 +89,7 @@ namespace Yaygun
         {
             _joint.enabled = false;
             _grapleState = EGrapleState.none;
+            _rope.GoBackHand();
         }
 
         private void EnterSlide()
@@ -88,9 +106,9 @@ namespace Yaygun
 
         private void StartPrep()
         {
+            _controller.TryDisconnectFromSlime();
             ConnectToJoint();
             _grapleState = EGrapleState.prep;
-            
         }
 
         private void ConnectToJoint()
@@ -111,8 +129,8 @@ namespace Yaygun
             {
                 _grapable = grapable;
                 _grapPos = grapPosition;
-                _controller.TryDisconnectFromSlime();
-                StartPrep();
+                _rope.GoToDestination(grapPosition);
+                SendRope();
             }
         }
 
@@ -167,8 +185,6 @@ namespace Yaygun
                 case EGrapleState.slide:
                     _rb.AddForce(Vector2.right * (_horizontalForce * InputHandler.Instance.HorizontalMove * Time.fixedDeltaTime), ForceMode2D.Force);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
     }

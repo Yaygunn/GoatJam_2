@@ -71,7 +71,7 @@ namespace Yaygun.Managers
 
         public async void RemovePreviousLevel()
         {
-            if (_loadedLevels.Count < 2)
+            if (_loadedLevels.Count < 3)
                 return;
             LevelController level = _loadedLevels[0].LevelController;
             _loadedLevels.RemoveAt(0);
