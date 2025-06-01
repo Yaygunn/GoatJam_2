@@ -54,12 +54,9 @@ namespace Yaygun
 
             await ChopOfLegs();
             
-            await UniTask.WaitForSeconds(_firstDelay);
             
             await SpriteAnim.PlayAnim(_spriteAnimImage);
             
-            await _videoPlay.Play();
-
             SpawnNextLevel();
             
             
@@ -78,13 +75,12 @@ namespace Yaygun
         private async UniTask ChopOfLegs()
         {
             WalkController _controller = FindAnyObjectByType<WalkController>();
+            AudioPlay.LossLegg();
             await UniTask.WaitForSeconds(0.2f);
             AudioPlay.LossLegg();
+            await UniTask.WaitForSeconds(0.1f);
             _controller.ChangePawns();
-            await UniTask.WaitForSeconds(0.2f);
-            AudioPlay.LossLegg();
-            await UniTask.WaitForSeconds(0.2f);
-            await UniTask.WaitForSeconds(1f);
+            await UniTask.WaitForSeconds(1.5f);
         }
     }
 }
