@@ -1,0 +1,4 @@
+# Disable line ending changes for specific FMOD Info.plist files
+Assets/Plugins/FMOD/platforms/mac/lib/fmodstudio.bundle/Contents/Info.plist -text
+Assets/Plugins/FMOD/platforms/mac/lib/fmodstudioL.bundle/Contents/Info.plist -text
+Assets/Plugins/FMOD/platforms/mac/lib/resonanceaudio.bundle/Contents/Info.plist -text
