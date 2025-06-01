@@ -1,4 +1,5 @@
 using System;
+using By2m.Systems;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using YInput;
@@ -77,8 +78,13 @@ namespace Yaygun
         private async UniTask ChopOfLegs()
         {
             WalkController _controller = FindAnyObjectByType<WalkController>();
-            
-            print("chop of leggs");
+            await UniTask.WaitForSeconds(0.2f);
+            AudioPlay.LossLegg();
+            _controller.ChangePawns();
+            await UniTask.WaitForSeconds(0.2f);
+            AudioPlay.LossLegg();
+            await UniTask.WaitForSeconds(0.2f);
+            await UniTask.WaitForSeconds(1f);
         }
     }
 }

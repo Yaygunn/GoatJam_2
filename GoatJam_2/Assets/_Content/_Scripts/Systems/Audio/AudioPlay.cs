@@ -46,6 +46,11 @@ namespace By2m.Systems
             Play(_data.Death);
         }
 
+        public static void LossLegg()
+        {
+            Play(_data.LegLoss);
+        }
+
         private static void Play(EventReference eventReference)
         {
             AudioSystem.Instance.PlayOneShotAndForget(eventReference);

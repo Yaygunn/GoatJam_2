@@ -13,9 +13,10 @@ namespace Yaygun
 
         public async UniTask Play()
         {
-            _videoPlayer.Play();
             _disableAtEnd.SetActive(true);
-            UniTask.WaitUntil(()=>!_videoPlayer.isPlaying);
+            _videoPlayer.Play();
+            await UniTask.WaitForSeconds(1f);
+            await UniTask.WaitWhile(()=>_videoPlayer.isPlaying);
             _disableAtEnd.SetActive(false);
         }
     }

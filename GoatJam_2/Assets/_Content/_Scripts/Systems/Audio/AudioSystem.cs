@@ -21,18 +21,25 @@ namespace By2m.Systems
         private readonly Dictionary<GameObject, Dictionary<EventReference, EventInstance>> _keyedInstances = new();
         private readonly List<EventInstance> _oneShotInstances = new();
 
+        private EventInstance _musicInstance;
 
         [field:SerializeField] public AudioDataSO AudioData { get; private set; }
 
         protected override void Initialize()
         {
             AudioPlay.Initialize();
+            _musicInstance = RuntimeManager.CreateInstance(AudioData.GameMusic);
+            _musicInstance.start();
         }
 
         protected override void Destruction()
         {
             StopAllPersistentSounds();
             StopAllTrackedOneShots();
+            
+            _musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            
+            _musicInstance.release();
         }
 
         public float GetEventLength(EventReference sound)

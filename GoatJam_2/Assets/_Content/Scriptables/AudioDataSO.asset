@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GameMusic>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1395977042
+      Data2: 1214397608
+      Data3: 1346894215
+      Data4: 1295281713
+    Path: event:/Musc/New Event
   <ButtonOn>k__BackingField:
     Guid:
       Data1: 1156371597
