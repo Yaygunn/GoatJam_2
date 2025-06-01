@@ -2172,6 +2172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenNextLevel2D
       objectReference: {fileID: 0}
+    - target: {fileID: 6946924359618241559, guid: f59d13522d2c78f40b557f11862663c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
