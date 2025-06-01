@@ -57,4 +57,4 @@ MonoBehaviour:
     <HasLegs>k__BackingField: 0
   - <LevelPrefab>k__BackingField: {fileID: 124974710422208307, guid: 9ef97ca943136af45b967276a6e27da9, type: 3}
     <HasLegs>k__BackingField: 0
-  CurrentLevel: 12
+  CurrentLevel: 10
